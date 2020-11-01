@@ -37,7 +37,7 @@ public class ConstructionSite {
     @JoinColumn(name = "uzytkownicy_id_uzytkownika")
     private   User user;
 
-   @OneToMany
+   @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
    private List<DailyWorkReport> dailyWorkReports;
 
     public List<DailyWorkReport> getDailyWorkReports() {

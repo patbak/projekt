@@ -2,7 +2,9 @@ package com.example.projekt.repository;
 
 import com.example.projekt.model.Foreman;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class ForemanRepository {
 
     @Autowired

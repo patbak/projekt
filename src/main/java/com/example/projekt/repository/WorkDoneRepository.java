@@ -2,7 +2,9 @@ package com.example.projekt.repository;
 
 import com.example.projekt.model.WorkDone;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class WorkDoneRepository {
 
     @Autowired
