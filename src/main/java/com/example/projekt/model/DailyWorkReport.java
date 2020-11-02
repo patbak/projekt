@@ -29,7 +29,7 @@ public class DailyWorkReport {
     @JoinColumn(name = "budowa_id_budowy")
     private ConstructionSite constructionSite;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    @OneToMany
     private List<UsedMaterial> usedMaterials;
 
     @OneToMany
