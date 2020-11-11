@@ -34,6 +34,7 @@ public class ConstructionSiteTest {
         assertTrue(constructionSites.size()>0);
     }
 
+/*
    @Test
     public void testSaveAndFlush(){
 
@@ -45,6 +46,7 @@ public class ConstructionSiteTest {
         assertTrue(constructionSiteRepository.create(constructionSite)!=null);
 
     }
+*/
 
 
 

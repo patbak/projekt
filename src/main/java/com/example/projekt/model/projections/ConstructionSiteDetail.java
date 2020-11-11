@@ -13,7 +13,7 @@ public interface ConstructionSiteDetail {
     String getName();
     String getDescription();
     User getUser();
-    DailyWorkReport getDailyWorkReport();
+    DailyWorkReport getDailyWorkReports();
     Date getPlannedEndDate();
 
 }
