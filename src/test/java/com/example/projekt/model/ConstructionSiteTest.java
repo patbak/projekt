@@ -1,5 +1,4 @@
 package com.example.projekt.model;
-
 import com.example.projekt.repository.ConstructionSiteJpaRepository;
 import com.example.projekt.repository.ConstructionSiteRepository;
 import com.example.projekt.repository.UserJpaRepository;
@@ -23,8 +22,8 @@ public class ConstructionSiteTest {
     @Autowired
     private ConstructionSiteJpaRepository constructionSiteJpaRepository;
 
-    @Autowired
-    private ConstructionSiteRepository constructionSiteRepository;
+/*    @Autowired
+    private ConstructionSiteRepository constructionSiteRepository;*/
 
     @Test
     public void testJpaFindByName()throws Exception{

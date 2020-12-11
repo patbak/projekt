@@ -1,6 +1,4 @@
 package com.example.projekt.model;
-
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -31,7 +29,6 @@ public class ConstructionSite {
 
     @Column(name = "planowana_data_zakonczenia")
     private Date plannedEndDate;
-
 
     @ManyToOne
     @JoinColumn(name = "uzytkownicy_id_uzytkownika")

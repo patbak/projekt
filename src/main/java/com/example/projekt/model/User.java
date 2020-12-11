@@ -34,6 +34,16 @@ public class User {
     @Column(name = "czy_kierownik")
     private boolean  isSupervisor;
 
+/*    public User(String name, String lastName, String email, String login, String password, String phoneNumber, boolean isSupervisor){
+        this.name=name;
+        this.lastName=lastName;
+        this.email=email;
+        this.login=login;
+        this.password=password;
+        this.phoneNumber=phoneNumber;
+        this.isSupervisor=isSupervisor;
+    }*/
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<ConstructionSite> constructionSites;
 

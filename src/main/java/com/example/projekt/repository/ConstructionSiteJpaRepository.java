@@ -1,5 +1,4 @@
 package com.example.projekt.repository;
-
 import com.example.projekt.model.ConstructionSite;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,7 +13,7 @@ import java.util.List;
 @Repository
 @RepositoryRestResource(path = "budowa", collectionResourceRel = "budowa")
 public interface ConstructionSiteJpaRepository extends JpaRepository<ConstructionSite,Integer> {
-    List<ConstructionSite> findByNameContains(String name);
 
+    List<ConstructionSite> findByNameContains(String name);
 
 }
