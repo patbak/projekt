@@ -7,7 +7,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "budowa")
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
+//@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 public class ConstructionSite {
 
     @Id
@@ -35,14 +35,14 @@ public class ConstructionSite {
     private   User user;
 
    @OneToMany
-   private List<DailyWorkReport> dailyWorkReports;
+   private List<DailyWorkReport> dailyWorkReport;
 
     public List<DailyWorkReport> getDailyWorkReports() {
-        return dailyWorkReports;
+        return dailyWorkReport;
     }
 
     public void setDailyWorkReports(List<DailyWorkReport> dailyWorkReports) {
-        this.dailyWorkReports = dailyWorkReports;
+        this.dailyWorkReport = dailyWorkReports;
     }
 
     public User getUser() {
