@@ -38,8 +38,12 @@ public class LabourStandard {
     private float labourStandard;
 
 
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "labourStandard")
+    @OneToMany(
+            mappedBy = "labourStandard",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY
+    )
     private List<WorkDone> workDoneList;
 
     public List<WorkDone> getWorkDoneList() {

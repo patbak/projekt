@@ -15,5 +15,6 @@ import java.util.List;
 public interface ConstructionSiteJpaRepository extends JpaRepository<ConstructionSite,Integer> {
 
     List<ConstructionSite> findByNameContains(String name);
+    List<ConstructionSite> findAll();
 
 }

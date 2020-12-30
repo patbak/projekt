@@ -7,7 +7,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "budowa")
-//@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 public class ConstructionSite {
 
     @Id
@@ -34,7 +34,12 @@ public class ConstructionSite {
     @JoinColumn(name = "uzytkownicy_id_uzytkownika")
     private   User user;
 
-   @OneToMany
+   @OneToMany(
+           mappedBy = "constructionSite", //dwukierunkowa relacja, pomogło przy sypaniu się aplikacji,
+                                        // gdy odwoływało się do relacji powiązanych manytoone
+           cascade = CascadeType.ALL,
+           orphanRemoval = true
+   )
    private List<DailyWorkReport> dailyWorkReport;
 
     public List<DailyWorkReport> getDailyWorkReports() {

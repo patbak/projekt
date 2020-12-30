@@ -16,10 +16,20 @@ public class Foreman {
     @Column(name = "dodatek")
     private float cashAllowance;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "foreman")
+    @OneToMany(
+            mappedBy = "foreman",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY
+    )
     private List<Employee> employees;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "foreman")
+    @OneToMany(
+            mappedBy = "foreman",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY
+    )
     private List<DailyWorkReport> dailyWorkReports;
 
     public int getForemanId() {

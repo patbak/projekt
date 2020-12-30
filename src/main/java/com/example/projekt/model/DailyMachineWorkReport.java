@@ -36,6 +36,7 @@ public class DailyMachineWorkReport {
     @JoinColumn(name = "pracownicy_id_pracownika")
     private Employee employee;
 
+
     public int getDailyMachineWorkReportId() {
         return DailyMachineWorkReportId;
     }

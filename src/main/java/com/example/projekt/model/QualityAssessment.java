@@ -19,7 +19,12 @@ public class QualityAssessment {
     @Column(name = "nazwa")
     private String qualityAssessmentName;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "qualityAssessment")
+    @OneToMany(
+            mappedBy = "qualityAssessment",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY
+    )
     private List<WorkDone> worksDone;
 
     public List<WorkDone> getWorksDone() {

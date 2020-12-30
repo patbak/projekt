@@ -16,7 +16,12 @@ public class Qualification {
     @Column(name = "nazwa")
     private String QualificationName;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "qualification")
+    @OneToMany(
+            mappedBy = "qualification",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY
+    )
     private List<EmployeeQualification> employeeQualifications;
 
     public int getQualificationId() {

@@ -19,10 +19,11 @@ public class PasswordController {
     @Autowired
     private PasswordService  passwordService;
 
-    @PostMapping("/resetPassword")
+    @GetMapping("/resetPassword")
     public ResponseEntity<String> sendEmailToReset(@RequestParam String email){
 
         User user = passwordService.checkEmail(email);
+
         if(user==null){
             return new ResponseEntity<>(
                     "Uźytkownik o podanym email nie istnieje",  HttpStatus.BAD_REQUEST

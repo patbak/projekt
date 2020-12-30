@@ -29,7 +29,13 @@ public class DailyWorkReport {
     @JoinColumn(name = "budowa_id_budowy")
     private ConstructionSite constructionSite;
 
-    @OneToMany
+
+    @OneToMany(
+            mappedBy = "dailyWorkReport",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY
+    )
     private List<UsedMaterial> usedMaterials;
 
     @OneToMany
@@ -39,7 +45,12 @@ public class DailyWorkReport {
     @JoinColumn(name = "brygadzisci_id_brygadzisty")
     private Foreman foreman;
 
-    @OneToMany
+    @OneToMany(
+            mappedBy = "dailyWorkReport",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY
+    )
     private List<Timesheet> timesheets;
 
     public List<DailyWorkReport> getDailyWorkReports() {

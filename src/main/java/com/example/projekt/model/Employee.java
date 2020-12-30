@@ -26,13 +26,28 @@ public class Employee {
     @JoinColumn(name = "brygadzisci_id_brygadzisty")
     private Foreman foreman;
 
-    @OneToMany
+    @OneToMany(
+            mappedBy = "employee",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY
+    )
     private List<Timesheet> timesheets;
 
-    @OneToMany
+    @OneToMany(
+            mappedBy = "employee",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY
+    )
     private List<EmployeeQualification> employeeQualifications;
 
-    @OneToMany
+    @OneToMany(
+            mappedBy = "employee",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY
+    )
     private List<DailyMachineWorkReport> dailyMachineWorkReports;
 
     public int getEmployeeId() {

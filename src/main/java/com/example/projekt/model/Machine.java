@@ -35,7 +35,12 @@ public class Machine {
     @Column(name = "uwagi")
     private String comments;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "machine")
+    @OneToMany(
+            mappedBy = "machine",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY
+    )
     private List<DailyMachineWorkReport> dailyMachineWorkReports;
 
     public int getMachineId() {

@@ -24,9 +24,12 @@ public class DailyWorkReportTest {
     public void testJpaFindById(){
 
        DailyWorkReport dailyWorkReport = dailyWorkReportJpaRepository.getOne(1);
-        System.out.println("Raport nr: "+dailyWorkReport.getDailyWorkReportId()
-                +"Data: "+dailyWorkReport.getReportDate()
-                +"Warunki pogodowe: " +dailyWorkReport.getWeatherConditions());
+       ConstructionSite constructionSite = dailyWorkReport.getConstructionSite();
+        System.out.println("\nRaport nr: "+dailyWorkReport.getDailyWorkReportId()
+                +"\nData: "+dailyWorkReport.getReportDate()
+                +"\nWarunki pogodowe: " +dailyWorkReport.getWeatherConditions()
+                +"\nbudowa: "+constructionSite.getName()
+                +"");
 
         assertTrue(dailyWorkReport!=null);
     }

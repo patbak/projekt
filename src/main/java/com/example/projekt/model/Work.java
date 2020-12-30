@@ -16,7 +16,12 @@ public class Work {
     @Column(name = "nazwa_roboty")
     private String workName;
 
-    @OneToMany
+    @OneToMany(
+            mappedBy = "work",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY
+    )
     private List<WorkDone> worksDone;
 
     public List<WorkDone> getWorksDone() {

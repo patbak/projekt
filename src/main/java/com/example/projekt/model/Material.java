@@ -19,7 +19,12 @@ public class Material {
     @Column(name = "jednostka")
     private String materialUnit;
 
-    @OneToMany
+    @OneToMany(
+            mappedBy = "material",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY
+    )
     private List<UsedMaterial> usedMaterials;
 
     public List<UsedMaterial> getUsedMaterials() {

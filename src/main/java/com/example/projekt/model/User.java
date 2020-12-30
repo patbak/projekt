@@ -44,7 +44,12 @@ public class User {
         this.isSupervisor=isSupervisor;
     }*/
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    @OneToMany(
+            mappedBy = "user",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY
+    )
     private List<ConstructionSite> constructionSites;
 
     public List<ConstructionSite> getConstructionSites() {
@@ -63,7 +68,12 @@ public class User {
         this.dailyWorkReports = dailyWorkReports;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    @OneToMany(
+            mappedBy = "user",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY
+    )
     private List<DailyWorkReport> dailyWorkReports;
 
     public int getUserId() {
