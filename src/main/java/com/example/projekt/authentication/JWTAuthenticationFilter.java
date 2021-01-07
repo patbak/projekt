@@ -2,11 +2,17 @@ package com.example.projekt.authentication;
 
 import com.auth0.jwt.JWT;
 import com.example.projekt.model.User;
+import com.example.projekt.service.UserDetailsServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.util.UrlPathHelper;
 
@@ -16,7 +22,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import static com.auth0.jwt.algorithms.Algorithm.HMAC512;
 import static com.example.projekt.security.SecurityConstants.*;
@@ -25,6 +33,9 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
     private AuthenticationManager authenticationManager;
     private final static UrlPathHelper urlPathHelper = new UrlPathHelper();
+
+    @Autowired
+    private UserDetailsServiceImpl userDetailsService;
 
     public JWTAuthenticationFilter(AuthenticationManager authenticationManager){
         this.authenticationManager=authenticationManager;
@@ -54,12 +65,16 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                                             HttpServletResponse res,
                                             FilterChain chain,
                                             Authentication auth) throws IOException, ServletException {
+        List<SimpleGrantedAuthority> authorities = (List<SimpleGrantedAuthority>) auth.getAuthorities();
 
         String token = JWT.create()
                 .withSubject(((org.springframework.security.core.userdetails.User) auth.getPrincipal()).getUsername())
+                .withClaim("role", authorities.get(0).toString())
                 .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .sign(HMAC512(SECRET.getBytes()));
         res.addHeader(HEADER_STRING, TOKEN_PREFIX + token);
+
+
     }
 
     @Override

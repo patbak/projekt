@@ -4,6 +4,8 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
@@ -13,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import static com.example.projekt.security.SecurityConstants.*;
 
@@ -35,6 +38,7 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
         UsernamePasswordAuthenticationToken authentication = getAuthentication(req);
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
+       System.out.println(SecurityContextHolder.getContext().getAuthentication().getAuthorities());
         chain.doFilter(req,res);
 
 
@@ -49,12 +53,17 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
                     .build()
                     .verify(token.replace(TOKEN_PREFIX, ""))
                     .getSubject();
+            String role = JWT.require(Algorithm.HMAC512(SECRET.getBytes()))
+                    .build()
+                    .verify(token.replace(TOKEN_PREFIX, ""))
+                    .getClaim("role").asString();
             if(user != null){
-                return new UsernamePasswordAuthenticationToken(user, null, new ArrayList<>());
+                GrantedAuthority authority = new SimpleGrantedAuthority(role);
+                return new UsernamePasswordAuthenticationToken(user, null, Arrays.asList(authority));
             }
             return null;
         }
         return null;
     }
-
+//tu trzeba przekazać dane o uprawnieniach
 }

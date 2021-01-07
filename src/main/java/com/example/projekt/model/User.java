@@ -1,7 +1,9 @@
 package com.example.projekt.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "uzytkownicy")
@@ -33,6 +35,14 @@ public class User {
 
     @Column(name = "czy_kierownik")
     private boolean  isSupervisor;
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "users_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Set<Role> roles = new HashSet<>();
 
 /*    public User(String name, String lastName, String email, String login, String password, String phoneNumber, boolean isSupervisor){
         this.name=name;
@@ -138,5 +148,13 @@ public class User {
 
     public void setSupervisor(boolean supervisor) {
         isSupervisor = supervisor;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }
