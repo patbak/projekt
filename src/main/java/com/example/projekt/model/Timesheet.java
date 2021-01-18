@@ -4,6 +4,8 @@ package com.example.projekt.model;
 import javax.persistence.*;
 
 import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 
 @Entity
@@ -16,10 +18,17 @@ public class Timesheet {
     private int TimesheetId;
 
     @Column(name = "godzina_rozpoczecia")
-    private Time startTimeOfWork;
+    private LocalTime startTimeOfWork;
 
     @Column(name = "godzina_zakonczenia")
-    private Time endTimeOfWork;
+    private LocalTime endTimeOfWork;
+
+    @Column(name = "szkodliwe_godziny")
+    private int harmfulHours;
+
+    @Column(name = "data_karty_pracy")
+    private LocalDate timesheetDate;
+
 
     @ManyToOne
     @JoinColumn(name = "raport_dzienny_brygady_id_raport_dzienny_brygady")
@@ -37,20 +46,36 @@ public class Timesheet {
         TimesheetId = timesheetId;
     }
 
-    public Time getStartTimeOfWork() {
+    public LocalTime getStartTimeOfWork() {
         return startTimeOfWork;
     }
 
-    public void setStartTimeOfWork(Time startTimeOfWork) {
+    public void setStartTimeOfWork(LocalTime startTimeOfWork) {
         this.startTimeOfWork = startTimeOfWork;
     }
 
-    public Time getEndTimeOfWork() {
+    public LocalTime getEndTimeOfWork() {
         return endTimeOfWork;
     }
 
-    public void setEndTimeOfWork(Time endTimeOfWork) {
+    public void setEndTimeOfWork(LocalTime endTimeOfWork) {
         this.endTimeOfWork = endTimeOfWork;
+    }
+
+    public int getHarmfulHours() {
+        return harmfulHours;
+    }
+
+    public void setHarmfulHours(int harmfulHours) {
+        this.harmfulHours = harmfulHours;
+    }
+
+    public LocalDate getTimesheetDate() {
+        return timesheetDate;
+    }
+
+    public void setTimesheetDate(LocalDate timesheetDate) {
+        this.timesheetDate = timesheetDate;
     }
 
     public DailyWorkReport getDailyWorkReport() {
