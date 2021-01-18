@@ -1,3 +1,4 @@
+
 package com.example.projekt.entity;
 
 import javax.persistence.*;
@@ -96,3 +97,4 @@ public class Account {
         isSupervisor = supervisor;
     }
 }
+
