@@ -15,10 +15,10 @@ public class Timesheet {
     @Column(name = "id_karty_pracy")
     private int TimesheetId;
 
-    @Column(name = "godzina_rozpoczecia_pracy")
+    @Column(name = "godzina_rozpoczecia")
     private Time startTimeOfWork;
 
-    @Column(name = "godzina_zakonczenia_pracy")
+    @Column(name = "godzina_zakonczenia")
     private Time endTimeOfWork;
 
     @ManyToOne

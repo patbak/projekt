@@ -5,6 +5,8 @@ import com.example.projekt.model.User;
 import com.example.projekt.service.UserDetailsServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -73,8 +75,15 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                 .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .sign(HMAC512(SECRET.getBytes()));
         res.addHeader(HEADER_STRING, TOKEN_PREFIX + token);
+        String response = TOKEN_PREFIX+token;
+        res.getWriter().write(response);
+        res.getWriter().flush();
+        res.getWriter().close();
+    }
 
-
+    protected ResponseEntity<String> getToken(String token){
+        System.out.println(TOKEN_PREFIX+token);
+        return new ResponseEntity<>(TOKEN_PREFIX+token, HttpStatus.OK);
     }
 
     @Override
