@@ -1,3 +1,4 @@
+
 package com.example.projekt.repository;
 
 import com.example.projekt.entity.Account;
@@ -13,3 +14,4 @@ public interface AccountRepository extends JpaRepository<Account,Integer> {
     Account findByLogin(String login);
     Account findByEmail(String email);
 }
+

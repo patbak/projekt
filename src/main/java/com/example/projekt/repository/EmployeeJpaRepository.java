@@ -8,4 +8,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 @RepositoryRestResource(path = "pracownicy", collectionResourceRel = "pracownicy")
 public interface EmployeeJpaRepository extends JpaRepository<Employee, Integer> {
+
+
+
 }
