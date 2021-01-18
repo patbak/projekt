@@ -2,6 +2,7 @@ package com.example.projekt.model;
 
 public class Hours {
 
+    private int minutes;
     private int hours;
     private int nightHours;
     private int harmfulHours;
@@ -13,6 +14,14 @@ public class Hours {
 
     public void setHours(int hours) {
         this.hours = hours;
+    }
+
+    public int getMinutes() {
+        return minutes;
+    }
+
+    public void setMinutes(int minutes) {
+        this.minutes = minutes;
     }
 
     public int getNightHours() {
@@ -37,5 +46,17 @@ public class Hours {
 
     public void setOvertime(int overtime) {
         this.overtime = overtime;
+    }
+
+    public void  addHours(int hours){
+        this.hours+=hours;
+    }
+
+    public  void addOvertime(int overtime){
+        this.overtime+=overtime;
+    }
+
+    public  void addHarmfulHours(int harmfulHours){
+        this.harmfulHours+=harmfulHours;
     }
 }
